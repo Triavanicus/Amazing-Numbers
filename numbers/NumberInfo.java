@@ -6,6 +6,7 @@ import numbers.properties.Buzz;
 import numbers.properties.Duck;
 import numbers.properties.Even;
 import numbers.properties.Gapful;
+import numbers.properties.Jumping;
 import numbers.properties.Odd;
 import numbers.properties.Palindrome;
 import numbers.properties.Property;
@@ -28,7 +29,8 @@ public class NumberInfo {
         "gapful", new Gapful(),
         "spy", new Spy(),
         "square", new Square(),
-        "sunny", new Sunny()
+        "sunny", new Sunny(),
+        "jumping", new Jumping()
     );
 
     conflictingProperties = Map.of(

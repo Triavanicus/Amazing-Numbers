@@ -1,5 +1,6 @@
 package numbers;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -29,7 +30,7 @@ public class Main {
         case 1 -> run1(answer);
         case 2 -> run2(answer);
         case 3 -> run3(answer);
-        case 4 -> run4(answer);
+        default -> run4(answer);
       }
     }
 
@@ -69,7 +70,7 @@ public class Main {
   public static void run4(String[] args) {
     long number = getNumber(args[0]);
     long count = getNumber(args[1]);
-    String[] properties = new String[]{args[2], args[3]};
+    String[] properties = Arrays.copyOfRange(args, 2, args.length);
     if (isFirstNatural(number) && isSecondNatural(count) && propertiesExists(properties)) {
       String[] conflicts = NumberInfo.getConflictingProperties(properties);
       if (conflicts.length > 0) {
