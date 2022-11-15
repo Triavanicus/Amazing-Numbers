@@ -7,16 +7,33 @@ public class Main {
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
-    System.out.println("Enter a natural number:");
-    String answer = sc.nextLine();
+    System.out.println("Welcome to Amazing Numbers!");
+    System.out.println("Supported requests:");
+    System.out.println("- enter a natural number to know it's properties;");
+    System.out.println("- enter 0 to exit.");
+    System.out.println();
 
-    int number = Integer.parseInt(answer);
+    while (true) {
+      System.out.print("Enter a request: ");
+      String answer = sc.nextLine();
+      System.out.println();
 
-    if (!NumberInfo.isNatural(number)) {
-      System.out.println("This number is not natural!");
-      return;
+      long number = Long.parseLong(answer);
+
+      if (number == 0) {
+        break;
+      }
+
+      if (!NumberInfo.isNatural(number)) {
+        System.out.println("The first parameter should be a natural number or zero.");
+        System.out.println();
+        continue;
+      }
+
+      NumberInfo.printProperties(number);
+      System.out.println();
     }
 
-    NumberInfo.printProperties(number);
+    System.out.println("Goodbye!");
   }
 }
