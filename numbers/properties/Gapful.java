@@ -3,11 +3,6 @@ package numbers.properties;
 public class Gapful implements Property {
 
   @Override
-  public String getName() {
-    return "gapful";
-  }
-
-  @Override
   public boolean test(long number) {
     if (number < 100) {
       return false;
