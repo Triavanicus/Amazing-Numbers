@@ -6,9 +6,9 @@ public class Spy implements Property {
   public boolean test(long number) {
     long sum = 0;
     long product = 1;
-    while (number != 0) {
-      long digit = number % 10;
-      number /= 10;
+
+    int[] digits = Helper.getDigits(number);
+    for (int digit : digits) {
       sum += digit;
       product *= digit;
     }

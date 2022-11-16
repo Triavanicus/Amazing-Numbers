@@ -6,10 +6,13 @@ import numbers.properties.Buzz;
 import numbers.properties.Duck;
 import numbers.properties.Even;
 import numbers.properties.Gapful;
+import numbers.properties.Happy;
 import numbers.properties.Jumping;
+import numbers.properties.Negated;
 import numbers.properties.Odd;
 import numbers.properties.Palindrome;
 import numbers.properties.Property;
+import numbers.properties.Sad;
 import numbers.properties.Spy;
 import numbers.properties.Square;
 import numbers.properties.Sunny;
@@ -20,26 +23,57 @@ public class NumberInfo {
   public static final Map<String, String[]> conflictingProperties;
 
   static {
-    properties = Map.of(
-        "even", new Even(),
-        "odd", new Odd(),
-        "buzz", new Buzz(),
-        "duck", new Duck(),
-        "palindromic", new Palindrome(),
-        "gapful", new Gapful(),
-        "spy", new Spy(),
-        "square", new Square(),
-        "sunny", new Sunny(),
-        "jumping", new Jumping()
+    properties = Map.ofEntries(
+        Map.entry("even", new Even()),
+        Map.entry("-even", new Negated(new Even())),
+        Map.entry("odd", new Odd()),
+        Map.entry("-odd", new Negated(new Odd())),
+        Map.entry("buzz", new Buzz()),
+        Map.entry("-buzz", new Negated(new Buzz())),
+        Map.entry("duck", new Duck()),
+        Map.entry("-duck", new Negated(new Duck())),
+        Map.entry("palindromic", new Palindrome()),
+        Map.entry("-palindromic", new Negated(new Palindrome())),
+        Map.entry("gapful", new Gapful()),
+        Map.entry("-gapful", new Negated(new Gapful())),
+        Map.entry("spy", new Spy()),
+        Map.entry("-spy", new Negated(new Spy())),
+        Map.entry("square", new Square()),
+        Map.entry("-square", new Negated(new Square())),
+        Map.entry("sunny", new Sunny()),
+        Map.entry("-sunny", new Negated(new Sunny())),
+        Map.entry("jumping", new Jumping()),
+        Map.entry("-jumping", new Negated(new Jumping())),
+        Map.entry("happy", new Happy()),
+        Map.entry("-happy", new Negated(new Happy())),
+        Map.entry("sad", new Sad()),
+        Map.entry("-sad", new Negated(new Sad()))
     );
-
-    conflictingProperties = Map.of(
-        "even", new String[]{"odd"},
-        "odd", new String[]{"even"},
-        "spy", new String[]{"duck"},
-        "duck", new String[]{"spy"},
-        "square", new String[]{"sunny"},
-        "sunny", new String[]{"square"}
+    conflictingProperties = Map.ofEntries(
+        Map.entry("even", new String[]{"-even", "odd"}),
+        Map.entry("-even", new String[]{"even", "-odd"}),
+        Map.entry("odd", new String[]{"-odd", "even"}),
+        Map.entry("-odd", new String[]{"odd", "-even"}),
+        Map.entry("buzz", new String[]{"-buzz"}),
+        Map.entry("-buzz", new String[]{"buzz"}),
+        Map.entry("duck", new String[]{"-duck", "spy"}),
+        Map.entry("-duck", new String[]{"duck"}),
+        Map.entry("palindromic", new String[]{"-palindromic"}),
+        Map.entry("-palindromic", new String[]{"palindromic"}),
+        Map.entry("gapful", new String[]{"-gapful"}),
+        Map.entry("-gapful", new String[]{"gapful"}),
+        Map.entry("spy", new String[]{"-spy", "duck"}),
+        Map.entry("-spy", new String[]{"spy"}),
+        Map.entry("square", new String[]{"-square", "sunny"}),
+        Map.entry("-square", new String[]{"square"}),
+        Map.entry("sunny", new String[]{"-sunny", "square"}),
+        Map.entry("-sunny", new String[]{"sunny"}),
+        Map.entry("jumping", new String[]{"-jumping"}),
+        Map.entry("-jumping", new String[]{"jumping"}),
+        Map.entry("happy", new String[]{"-happy", "sad"}),
+        Map.entry("-happy", new String[]{"happy", "-sad"}),
+        Map.entry("sad", new String[]{"-sad", "happy"}),
+        Map.entry("-sad", new String[]{"sad", "-happy"})
     );
   }
 
@@ -50,6 +84,9 @@ public class NumberInfo {
   public static void printProperties(long number) {
     System.out.printf("Properties of %,d%n", number);
     for (var p : properties.entrySet()) {
+      if (p.getKey().startsWith("-")) {
+        continue;
+      }
       printProperty(p.getKey(), p.getValue().test(number));
     }
     System.out.println();
@@ -66,6 +103,10 @@ public class NumberInfo {
   private static void printPropertyList(long number) {
     StringBuilder props = new StringBuilder();
     for (var p : properties.entrySet()) {
+      if (p.getKey().startsWith("-")) {
+        continue;
+      }
+
       if (p.getValue().test(number)) {
         if (props.length() > 0) {
           props.append(", ");
@@ -111,15 +152,16 @@ public class NumberInfo {
     System.out.printf("%12s: %b%n", name, value);
   }
 
-  public static void findProperties(long number, long count, String[] propertyNames) {
+  public static void findProperties(long number, long count, String[] searchNames) {
     long found = 0;
-    Property[] props = new Property[propertyNames.length];
-    for (int i = 0; i < props.length; i++) {
-      props[i] = properties.get(propertyNames[i].toLowerCase());
+    Property[] searchProps = new Property[searchNames.length];
+    for (int i = 0; i < searchProps.length; i++) {
+      searchProps[i] = properties.get(searchNames[i].toLowerCase());
     }
+
     for (long i = 0; found < count; i++) {
       boolean hasAllProperties = true;
-      for (Property p : props) {
+      for (Property p : searchProps) {
         if (!p.test(number + i)) {
           hasAllProperties = false;
           break;
@@ -131,6 +173,5 @@ public class NumberInfo {
       }
     }
     System.out.println();
-
   }
 }

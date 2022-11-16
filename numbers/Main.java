@@ -70,9 +70,9 @@ public class Main {
   public static void run4(String[] args) {
     long number = getNumber(args[0]);
     long count = getNumber(args[1]);
-    String[] properties = Arrays.copyOfRange(args, 2, args.length);
-    if (isFirstNatural(number) && isSecondNatural(count) && propertiesExists(properties)) {
-      String[] conflicts = NumberInfo.getConflictingProperties(properties);
+    String[] searchNames = Arrays.copyOfRange(args, 2, args.length);
+    if (isFirstNatural(number) && isSecondNatural(count) && propertiesExists(searchNames)) {
+      String[] conflicts = NumberInfo.getConflictingProperties(searchNames);
       if (conflicts.length > 0) {
         System.out.printf("The request contains mutually exclusive properties: [%s]%n",
             String.join(", ", conflicts).toUpperCase());
@@ -81,7 +81,7 @@ public class Main {
         return;
       }
 
-      NumberInfo.findProperties(number, count, properties);
+      NumberInfo.findProperties(number, count, searchNames);
     }
   }
 
@@ -148,6 +148,7 @@ public class Main {
     System.out.println(
         "  * the second parameter shows how many consecutive numbers are to be printed;");
     System.out.println("- two natural numbers and two properties to search for;");
+    System.out.println("- a property preceded by minus must not be present in numbers;");
     System.out.println("- separate the parameters with one space;");
     System.out.println("- enter 0 to exit.");
     System.out.println();

@@ -2,7 +2,7 @@ package numbers.properties;
 
 public class Sunny implements Property {
 
-  Square s = new Square();
+  final Square s = new Square();
 
   @Override
   public boolean test(long number) {
