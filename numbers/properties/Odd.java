@@ -2,9 +2,7 @@ package numbers.properties;
 
 public class Odd extends Property {
   public Odd() {
-    this.name = "odd";
-    this.conflicts = new String[]{"-odd", "even"};
-    this.conflictsNegated = new String[]{"odd", "-even"};
+    super("odd", new String[]{"even"}, new String[]{"-even"});
   }
 
   @Override

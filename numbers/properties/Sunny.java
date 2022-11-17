@@ -3,9 +3,7 @@ package numbers.properties;
 public class Sunny extends Property {
 
   public Sunny() {
-    this.name = "sunny";
-    this.conflicts = new String[]{"-sunny", "square"};
-    this.conflictsNegated = new String[]{"sunny"};
+    super("sunny", new String[]{"square"});
   }
 
   final Square s = new Square();

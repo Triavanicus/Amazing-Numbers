@@ -2,9 +2,7 @@ package numbers.properties;
 
 public class Palindromic extends Property {
   public Palindromic() {
-    this.name = "palindromic";
-    this.conflicts = new String[]{"-palindromic"};
-    this.conflictsNegated = new String[]{"palindromic"};
+    super("palindromic");
   }
   @Override
   public boolean test(long number) {

@@ -3,9 +3,7 @@ package numbers.properties;
 public class Buzz extends Property {
 
   public Buzz(){
-    this.name = "buzz";
-    this.conflicts = new String[]{"-buzz"};
-    this.conflictsNegated = new String[]{"buzz"};
+    super("buzz");
   }
 
   @Override

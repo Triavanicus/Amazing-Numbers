@@ -3,9 +3,7 @@ package numbers.properties;
 public class Duck extends Property {
 
   public Duck(){
-    this.name = "duck";
-    this.conflicts = new String[]{"-duck", "spy"};
-    this.conflictsNegated = new String[]{"duck"};
+    super("duck", new String[]{"spy"});
   }
   @Override
   public boolean test(long number) {

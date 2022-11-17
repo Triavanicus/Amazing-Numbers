@@ -3,9 +3,7 @@ package numbers.properties;
 public class Square extends Property {
 
   public Square() {
-    this.name = "square";
-    this.conflicts = new String[]{"-square", "sunny"};
-    this.conflictsNegated = new String[]{"square"};
+    super("square", new String[]{"sunny"});
   }
 
   @Override

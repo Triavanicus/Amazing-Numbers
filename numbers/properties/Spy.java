@@ -4,9 +4,7 @@ public class Spy extends Property {
 
 
   public Spy() {
-    this.name = "spy";
-    this.conflicts = new String[]{"-spy", "duck"};
-    this.conflictsNegated = new String[]{"spy"};
+    super("spy", new String[]{"duck"});
   }
 
   @Override

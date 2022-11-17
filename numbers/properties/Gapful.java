@@ -3,9 +3,7 @@ package numbers.properties;
 public class Gapful extends Property {
 
   public Gapful(){
-    this.name = "gapful";
-    this.conflicts = new String[]{"-gapful"};
-    this.conflictsNegated = new String[]{"gapful"};
+    super("gapful");
   }
   @Override
   public boolean test(long number) {

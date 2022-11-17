@@ -3,9 +3,7 @@ package numbers.properties;
 public class Jumping extends Property {
 
   public Jumping() {
-    this.name = "jumping";
-    this.conflicts = new String[]{"-jumping"};
-    this.conflictsNegated = new String[]{"jumping"};
+    super("jumping");
   }
 
   @Override
