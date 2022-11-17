@@ -19,8 +19,8 @@ import numbers.properties.Sunny;
 
 public class NumberInfo {
 
-  static Map<String, Property> properties = new HashMap<>();
-  static Map<String, String[]> conflictingProperties = new HashMap<>();
+  private static final Map<String, Property> properties = new HashMap<>();
+  private static final Map<String, String[]> conflictingProperties = new HashMap<>();
 
   static {
     for (Property p : new Property[]{
@@ -65,6 +65,10 @@ public class NumberInfo {
       printPropertyList(i);
     }
     System.out.println();
+  }
+
+  public static Map<String, Property> getProperties() {
+    return properties;
   }
 
   private static void printPropertyList(long number) {

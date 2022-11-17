@@ -107,7 +107,7 @@ public class Main {
     StringBuilder sb = new StringBuilder();
     int numProperties = 0;
     for (String property : properties) {
-      if (!NumberInfo.properties.containsKey(property.toLowerCase())) {
+      if (!NumberInfo.getProperties().containsKey(property.toLowerCase())) {
         if (sb.length() > 0) {
           sb.append(", ");
         }
@@ -123,7 +123,7 @@ public class Main {
         System.out.printf("The properties [%s] are wrong.%n", sb);
       }
       System.out.printf("Available properties: %s%n",
-          NumberInfo.properties.keySet().toString().toUpperCase());
+          NumberInfo.getProperties().keySet().toString().toUpperCase());
       System.out.println();
       return false;
     }
