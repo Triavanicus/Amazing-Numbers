@@ -1,6 +1,12 @@
 package numbers.properties;
 
-public class Sunny implements Property {
+public class Sunny extends Property {
+
+  public Sunny() {
+    this.name = "sunny";
+    this.conflicts = new String[]{"-sunny", "square"};
+    this.conflictsNegated = new String[]{"sunny"};
+  }
 
   final Square s = new Square();
 

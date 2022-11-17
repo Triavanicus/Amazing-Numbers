@@ -2,7 +2,13 @@ package numbers.properties;
 
 import java.util.HashSet;
 
-public class Happy implements Property {
+public class Happy extends Property {
+
+  public Happy() {
+    this.name = "happy";
+    this.conflicts = new String[]{"-happy", "sad"};
+    this.conflictsNegated = new String[]{"happy", "-sad"};
+  }
 
   @Override
   public boolean test(long number) {

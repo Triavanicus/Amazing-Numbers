@@ -1,6 +1,13 @@
 package numbers.properties;
 
-public class Spy implements Property {
+public class Spy extends Property {
+
+
+  public Spy() {
+    this.name = "spy";
+    this.conflicts = new String[]{"-spy", "duck"};
+    this.conflictsNegated = new String[]{"spy"};
+  }
 
   @Override
   public boolean test(long number) {

@@ -1,7 +1,12 @@
 package numbers.properties;
 
-public class Gapful implements Property {
+public class Gapful extends Property {
 
+  public Gapful(){
+    this.name = "gapful";
+    this.conflicts = new String[]{"-gapful"};
+    this.conflictsNegated = new String[]{"gapful"};
+  }
   @Override
   public boolean test(long number) {
     if (number < 100) {

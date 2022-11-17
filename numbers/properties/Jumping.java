@@ -1,6 +1,12 @@
 package numbers.properties;
 
-public class Jumping implements Property {
+public class Jumping extends Property {
+
+  public Jumping() {
+    this.name = "jumping";
+    this.conflicts = new String[]{"-jumping"};
+    this.conflictsNegated = new String[]{"jumping"};
+  }
 
   @Override
   public boolean test(long number) {
